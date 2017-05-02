@@ -7,7 +7,7 @@ import{UsuariosComponent} from './usuarios/usuarios.component';
 import{VehiculosComponent} from './vehiculos/vehiculos.component';
 const appRoutes: Routes=[
     { path: 'home',component:HomeComponent},
-    //{ path: 'clientes',component:ClientesComponent},
+    { path: 'clientes',component:ClientesComponent},
     { path: 'usuarios',component:UsuariosComponent},
     { path: 'vehiculos',component:VehiculosComponent},
     { path: 'detalle',component:DetalleComponent },

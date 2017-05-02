@@ -5,8 +5,8 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 var connection=require('./connections');
 var router=require('./routes');
-//var cors=require('./cors');
-//app.use(cors.permisos);
+var cors=require('./cors');
+app.use(cors.permisos);
 connection.inicia();
 router.configurar(app);
 
