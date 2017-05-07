@@ -6,17 +6,24 @@ import{Usuarios} from './usuarios';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
-
+import 'rxjs/add/observable/throw';
 @Injectable()
 export class UsuariosService {
   private headers=new Headers({'Content-Type':'application/json'});
   private url='http://localhost:8000/usuarios';
 
   constructor(private http:Http) { }
-  getInventario():Observable<Usuarios[]>{
+  getUsuarios():Observable<Usuarios[]>{
     let url= `${this.url}`;
     return this.http.get(url)
-                .map(r =>r.json())
+                .map(r => r.json())
+                .catch(this.handleError);
+  }
+addUsuarios(usuario:Usuarios){
+    let url= `${this.url}`;
+    let iJson=JSON.stringify(usuario);
+    return this.http.post(url,iJson,{headers:this.headers})
+                .map(r => r.json())
                 .catch(this.handleError);
   }
 
@@ -29,7 +36,7 @@ export class UsuariosService {
       let err=body.error || JSON.stringify(body);
       errMsg= `${error.status} - ${error.statusText || ''} ${err}`;
     }else{
-        errMsg=error.message ? error.message: error.toString();
+        errMsg= error.message ? error.message: error.toString();
     }
     return Observable.throw(errMsg);
   }

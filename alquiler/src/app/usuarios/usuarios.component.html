@@ -1,26 +1,8 @@
-<div class="container">
-    <div class="card">
-        <div class="card-block">
-            <table class="table table-hover">
-                <thead class="thead-default">
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Usuario</th>
-                        <th>Tipo</th>
-                    </tr>
-                </thead>
-            </table>
-            <tbody>
-                <tr *ngFor="let item of usuario">
-                    <td>{{item.id}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.apellido}}</td>
-                    <td>{{item.usuario}}</td>
-                    <td>{{item.tipo}}</td>
-                </tr>
-            </tbody>
-        </div>
-    </div>
+<div>
+    Pantalla de usuarios
 </div>
+<nav>
+    <button class="btn btn-primary" routerLink="detalleUsuario">Lista de usuarios</button>
+    <button class="btn btn-primary" routerLink="altaUsuario"> Alta de usuarios</button>
+</nav>
+<router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,10 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { UsuariosService} from './usuarios/usuarios.service';
+import{UsuariosAltaComponent} from './usuarios/usuarios-alta.component';
+import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
+
 
 @NgModule({
   declarations: [
@@ -18,15 +22,17 @@ import { DetalleComponent } from './detalle/detalle.component';
     ClientesComponent,
     UsuariosComponent,
     VehiculosComponent,
-    DetalleComponent
+    DetalleComponent,
+    UsuariosAltaComponent,
+    UsuariosDetalleComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UsuariosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
