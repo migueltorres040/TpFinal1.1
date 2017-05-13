@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';// importo FormsModule para usar template driven forms 
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
