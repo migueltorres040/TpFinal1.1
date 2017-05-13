@@ -2,6 +2,7 @@ import{Component,OnInit} from '@angular/core';
 import{Router,ActivatedRoute,Params} from '@angular/router';
 import { UsuariosService} from './usuarios.service';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms'; //agrego la clase validator para validad los campos en un fomeularios
+import{UsuariosValidator} from'./usuarios.validators';
 @Component({
     selector:'usuarios-alta',
     templateUrl: './usuarios-alta.component.html'
@@ -22,7 +23,7 @@ export class UsuariosAltaComponent implements OnInit{
     }
     crearControles(){
         this.form1=this.fb.group({
-            id:['',Validators.required],//validaciones para los campos de los formularios
+            id:['',Validators.required,UsuariosValidator.valorUnico(this.service)],//validaciones para los campos de los formularios
              nombre:['',Validators.required],
               apellido:['',Validators.required],
                usuario:['',Validators.required],

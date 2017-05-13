@@ -13,6 +13,10 @@
                          <div *ngIf="form1.controls.id.errors.required" class="alert alert-danger">
                                 el campo es requerido
                          </div>
+                         <!--valida si el dato que ingreso ya existe-->
+                         <div *ngIf="form1.controls.id.errors.valorUnico" class="alert alert-danger">
+                                el registro ya existe
+                         </div>
                     </div>    
                     
                 </div>

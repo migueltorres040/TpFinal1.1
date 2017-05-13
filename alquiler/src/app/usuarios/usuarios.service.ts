@@ -16,6 +16,15 @@ export class UsuariosService {
   getUsuarios():Observable<Usuarios[]>{
     let url= `${this.url}`;
     return this.http.get(url)
+                
+                .map(r => r.json())
+                .catch(this.handleError);
+  }
+  //funcion para validacion asincrona --busca en la base si existe el registro
+  getUsuario(id:number):Observable<Usuarios[]>{
+    let url= `${this.url}/${id}`;
+    return this.http.get(url)
+                .first()
                 .map(r => r.json())
                 .catch(this.handleError);
   }
