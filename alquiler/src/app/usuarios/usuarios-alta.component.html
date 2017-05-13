@@ -8,10 +8,23 @@
                 <div class="form-group">
                     <label for="id">Id</label>
                     <input type="number" class="form-control" id="id"formControlName="id">
+                    <!--esto es la validacion del campo -->
+                     <div *ngIf="form1.controls.id.errors && form1.controls.id.touched">
+                         <div *ngIf="form1.controls.id.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
+                    
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre"formControlName="nombre">
+                    <!--esto es la validacion del campo -->
+                    <div *ngIf="form1.controls.nombre.errors && form1.controls.id.touched">
+                         <div *ngIf="form1.controls.nombre.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
                 </div>
                  <div class="form-group">
                     <label for="apellido">Apellido</label>
@@ -29,7 +42,9 @@
                     <label for="tipo">Tipo de usuario</label>
                     <input type="text" class="form-control" id="tipo"formControlName="tipo">
                 </div>
-                <button class="btn btn-default"(click)="guardarUsuario()">Registrar</button>
+                <!-- se deshabilita el boton hasta que no esten todos los campos llenos-->
+                <!--<button class="btn btn-default"(click)="guardarUsuario()">Registrar</button>-->
+                <button class="btn btn-primary"(click)="guardarUsuario()" [disabled]="!form1.valid">Registrar</button>
             </form>
         </div>
     </div>
