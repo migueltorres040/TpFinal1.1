@@ -33,7 +33,7 @@ import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UsuariosService],
+  providers: [UsuariosService],// aca se importan los servicios
   bootstrap: [AppComponent]
 })
 export class AppModule { }
