@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 @Injectable()
 export class UsuariosService {
-  private headers=new Headers({'Content-Type':'application/json'});
+  private headers=new Headers({'Content-Type':'application/json'});//&&&
   private url='http://localhost:8000/usuarios';
 
   constructor(private http:Http) { }
@@ -31,7 +31,7 @@ export class UsuariosService {
 addUsuarios(usuario:Usuarios){
     let url= `${this.url}`;
     let iJson=JSON.stringify(usuario);
-    return this.http.post(url,iJson,{headers:this.headers})
+    return this.http.post(url,iJson,{headers:this.headers})//este header es el que se creo al comienzo &&&
                 .map(r => r.json())
                 .catch(this.handleError);
   }

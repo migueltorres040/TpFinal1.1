@@ -12,27 +12,28 @@ import{UsuariosValidator} from'./usuarios.validators';
 export class UsuariosAltaComponent implements OnInit{
         titulo="Agregar un nuevo registro";
         form1:FormGroup;
-        usuarioss:Usuarios; // creo un atributo para enlazar con los controles del formulario  con ngModule
+      usuarios:Usuarios[]; // creo un atributo para enlazar con los controles del formulario  con ngModule
+      
     constructor(
         private route:ActivatedRoute,
         private router:Router,
         private service:UsuariosService,
         private fb:FormBuilder
-    ){this.crearControles()}
+    ){this.crearControles();}
     ngOnInit(){
-       /* let id=this.route.snapshot.params['id'];
+        let id=this.route.snapshot.params['id'];
         if(!id) return;
-        console.log(id);*/
+        console.log(id);
     }
     crearControles(){
-        /*this.form1=this.fb.group({
+        this.form1=this.fb.group({
             id:['',Validators.required,UsuariosValidator.valorUnico(this.service)],//validaciones para los campos de los formularios
              nombre:['',Validators.required],
               apellido:['',Validators.required],
-               usuario:['',Validators.required],
+              usuario:['',Validators.required],
                 password:['',Validators.required],
                  tipo:['',Validators.required]
-        })*/
+         })
     }
     guardarUsuario(){
         this.service.addUsuarios(this.form1.value)
@@ -42,7 +43,7 @@ export class UsuariosAltaComponent implements OnInit{
                         () => console.log("terminado")
                     );
     }
-    limpiarFormulario(form1){
+    limpiarFormulario(){
         //esta forma de limpiar un formulario se usa cuando no tenemos validaciones en los campos
         /*this.form1.patchValue({
             id:'',

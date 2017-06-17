@@ -4,16 +4,14 @@
             {{titulo}}
         </div>
         <div class="card-block">
-            <!--<form novalidate [formGroup]="form1"> este se utiliza con ReactiveFormsModule-->
-             <form novalidate #f="ngForm"> <!--para usar template driven forms -->  
+            <form novalidate [formGroup]="form1"> <!--este se utiliza con ReactiveFormsModule-->
+              
                 <div class="form-group">
                     <label for="id">Id</label>
-                    <!--<input type="number" class="form-control" id="id"formControlName="id"> ReactiveFormsModule-->
-                    <input type="number" class="form-control" id="id" [(ngModel)]="usuarioss.id" name="id" ngModel #id="ngModel"
-                    required><!--para usar template driven forms / atributo usuario.id --> 
-
+                    <input type="number" class="form-control" id="id" formControlName="id"> <!--ReactiveFormsModule-->
+                    
                     <!--esto es la validacion del campo valida si el dato que ingreso ya existe en la base-->
-                     <!--<div *ngIf="form1.controls.id.errors && form1.controls.id.touched">
+                     <div *ngIf="form1.controls.id.errors && form1.controls.id.touched">
                          <div *ngIf="form1.controls.id.errors.required" class="alert alert-danger">
                                 el campo es requerido
                          </div>
@@ -21,50 +19,62 @@
                          <div *ngIf="form1.controls.id.errors.valorUnico" class="alert alert-danger">
                                 el registro ya existe
                          </div>
-                    </div>  se usa para ReactiveFormsModule -->
-                    <div *ngIf="id.errors && id.touched"><!-- ya no se usa form1.controls.id.errors porque es de ReactiveFormsModule -->
-                         <div *ngIf="id.errors.required" class="alert alert-danger">
-                                el campo es requerido
-                         </div>
-                         
-                         <!--<div *ngIf="id.errors.valorUnico" class="alert alert-danger">
-                                el registro ya existe
-                         </div>-->
-                    </div>
+                   </div>  <!-- se usa para ReactiveFormsModule -->
+                   
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre"[(ngModel)]="usuarioss.nombre"name="nombre" #nombre="ngModel"
+                    <input type="text" class="form-control" id="nombre"formControlName="nombre"
                     required><!-- variable #nombre="ngModel"-->
 
                     <!--esto es la validacion del campo -->
-                    <div *ngIf="nombre.errors && nombre.touched">
-                         <div *ngIf="nombre.errors.required" class="alert alert-danger">
+                    <div *ngIf="form1.controls.nombre.errors && form1.controls.nombre.touched">
+                         <div *ngIf="form1.controls.nombre.errors.required" class="alert alert-danger">
                                 el campo es requerido
                          </div>
                     </div>    
                 </div>
                  <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido"[(ngModel)]="usuarioss.apellido"name="apellido" #apellido="ngModel"required>
+                    <input type="text" class="form-control" id="apellido"formControlName="apellido" required>
+                    <div *ngIf="form1.controls.apellido.errors && form1.controls.apellido.touched">
+                         <div *ngIf="form1.controls.apellido.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
                 </div>
                  <div class="form-group">
                     <label for="usuario">Usuario</label>
-                    <input type="text" class="form-control" id="usuario"[(ngModel)]="usuarioss.usuario"name="usuario" #usuario="ngModel"required>
+                    <input type="text" class="form-control" id="usuario"formControlName="usuario"required>
+                    <div *ngIf="form1.controls.usuario.errors && form1.controls.usuario.touched">
+                         <div *ngIf="form1.controls.usuario.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
                 </div>
                  <div class="form-group">
                     <label for="pass">Password</label>
-                    <input type="text" class="form-control" id="pass"[(ngModel)]="usuarioss.password"name="password" #password="ngModel"required>
+                    <input type="text" class="form-control" id="password"formControlName="password"required>
+                    <div *ngIf="form1.controls.password.errors && form1.controls.password.touched">
+                         <div *ngIf="form1.controls.password.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
                 </div>
                  <div class="form-group">
                     <label for="tipo">Tipo de usuario</label>
-                    <input type="text" class="form-control" id="tipo"[(ngModel)]="usuarioss.tipo"name="tipo" #tipo="ngModel"required>
+                    <input type="text" class="form-control" id="tipo"formControlName="tipo"required>
+                    <div *ngIf="form1.controls.tipo.errors && form1.controls.tipo.touched">
+                         <div *ngIf="form1.controls.tipo.errors.required" class="alert alert-danger">
+                                el campo es requerido
+                         </div>
+                    </div>    
                 </div>
                 <!-- se deshabilita el boton hasta que no esten todos los campos llenos-->
                 <!--<button class="btn btn-default"(click)="guardarUsuario()">Registrar</button>-->
                 <button class="btn btn-primary"(click)="guardarUsuario()" [disabled]="!form1.valid">Registrar</button>
                 <!--resetear formulario-->
-                <button class="btn btn-default"(click)="limpiarFormulario(f)">Limpiar</button>
+                <button class="btn btn-default"(click)="limpiarFormulario()">Limpiar</button>
             </form>
         </div>
     </div>
