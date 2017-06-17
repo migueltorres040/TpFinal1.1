@@ -15,12 +15,14 @@ const appRoutes: Routes=[
     { path: 'usuarios',component:UsuariosComponent,
       children:[
           {path: '',redirectTo:'detalleUsuario',pathMatch:'full'},
-          {path: 'detalleUsuario',component:UsuariosDetalleComponent},
-           {path: 'altaUsuario',component:UsuariosAltaComponent}
+          
+           {path: 'altaUsuario',component:UsuariosAltaComponent},
+           {path: 'detalleUsuario',component:UsuariosDetalleComponent},
+           { path: 'detalleUsuario/:id', component: UsuariosDetalleComponent }
       ]
     },
     { path: 'vehiculos',component:VehiculosComponent},
-    { path: 'detalle',component:DetalleComponent },
+    { path: 'detalle',component:DetalleComponent }
     
 ];
 

@@ -14,13 +14,16 @@
                 </thead>
            
             <tbody>
-                <tr *ngFor="let item of usuarios">
+                <tr *ngFor="let item of lista">
                     <td>{{item.id}}</td>
                     <td>{{item.nombre}}</td>
                     <td>{{item.apellido}}</td>
                     <td>{{item.usuario}}</td>
                      <td>{{item.password}}</td>
                     <td>{{item.tipo}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary"(click)="modificar(item)">Modificar</button>
+                    </td>
                 </tr>
             </tbody>
              </table>

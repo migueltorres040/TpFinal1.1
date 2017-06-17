@@ -23,6 +23,24 @@ export class UsuariosAltaComponent implements OnInit{
     ngOnInit(){
         let id=this.route.snapshot.params['id'];
         if(!id) return;
+        this.service.getUsuario(id)
+        .subscribe(
+            rs=> this.usuarios=rs,
+            er=> console.log('Error:%s',er),
+            ()=>{
+                if(this.usuarios.length>0){
+                    this.form1.patchValue({
+                        id:this.usuarios[0].id,
+                        nombred:this.usuarios[1].nombre,
+                        apellido:this.usuarios[2].apellido,
+                        usuario:this.usuarios[3].usuario,
+                        password:this.usuarios[4].password,
+                        tipo:this.usuarios[5].tipo
+
+                    })
+                }
+            }
+        )
         console.log(id);
     }
     crearControles(){
@@ -31,7 +49,10 @@ export class UsuariosAltaComponent implements OnInit{
              nombre:['',Validators.required],
               apellido:['',Validators.required],
               usuario:['',Validators.required],
-                password:['',Validators.required],
+                password:['',Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(10)
+                ])],
                  tipo:['',Validators.required]
          })
     }

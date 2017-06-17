@@ -59,6 +59,9 @@
                          <div *ngIf="form1.controls.password.errors.required" class="alert alert-danger">
                                 el campo es requerido
                          </div>
+                          <div *ngIf="form1.controls.password.errors.maxlength" class="alert alert-danger">
+                                el password debe contener como maximo 10 caracteres
+                         </div>
                     </div>    
                 </div>
                  <div class="form-group">
