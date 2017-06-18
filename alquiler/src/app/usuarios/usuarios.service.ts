@@ -35,8 +35,14 @@ addUsuarios(usuario:Usuarios){
                 .map(r => r.json())
                 .catch(this.handleError);
   }
-
- 
+  // metodo para modificar registro
+ putUsuario(usuario:Usuarios){
+   let url=`${this.url}`;
+   let iJson=JSON.stringify(usuario);
+   return this.http.put(url,iJson,{headers:this.headers})
+                .map(r=>r.json())
+                .catch(this.handleError);
+ }
   
   private handleError(error:Response | any){
     let errMsg:string;

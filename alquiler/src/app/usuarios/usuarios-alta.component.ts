@@ -12,8 +12,8 @@ import{UsuariosValidator} from'./usuarios.validators';
 export class UsuariosAltaComponent implements OnInit{
         titulo="Agregar un nuevo registro";
         form1:FormGroup;
-      usuarios:Usuarios[]; // creo un atributo para enlazar con los controles del formulario  con ngModule
-      
+        usuarios:Usuarios[]; // creo un atributo para enlazar con los controles del formulario  con ngModule
+        esEdicion=false;//atributo para reconocer si utilizar el metodo guardar un registro nuevo o el guardar de modificar
     constructor(
         private route:ActivatedRoute,
         private router:Router,
@@ -23,12 +23,14 @@ export class UsuariosAltaComponent implements OnInit{
     ngOnInit(){
         let id=this.route.snapshot.params['id'];
         if(!id) return;
+        //trae los datos al formulario
         this.service.getUsuario(id)
         .subscribe(
             rs=> this.usuarios=rs,
             er=> console.log('Error:%s',er),
             ()=>{
                 if(this.usuarios.length>0){
+                    this.esEdicion=true;//cuando se carga la informacion en el formulario 
                     this.form1.patchValue({
                         id:this.usuarios[0].id,
                         nombre:this.usuarios[0].nombre,
@@ -56,27 +58,40 @@ export class UsuariosAltaComponent implements OnInit{
                  tipo:['',Validators.required]
          })
     }
+    //metodo guardar para actualizar registro
     guardarUsuario(){
-        this.service.addUsuarios(this.form1.value)
+        if(this.esEdicion){
+            this.updateUsuario(this.form1.value);
+        }
+        else{
+            this.agregarUsuario(this.form1.value);
+        }
+    }
+    //metodo para agregar un nuevo registro
+    agregarUsuario(usuario:Usuarios){
+        this.service.addUsuarios(usuario)
                     .subscribe(
                         rt => console.log(rt),
                         er => console.log(er),
                         () => console.log("terminado")
                     );
     }
+    //metodo para modificar usuarios
+    updateUsuario(usuario:Usuarios){
+        if(!usuario)return;
+        this.service.putUsuario(usuario)
+                    .subscribe(
+                        rt=>console.log(rt),
+                        er=>console.log(er),
+                        ()=>this.goLista()
+                    )
+    }
     limpiarFormulario(){
-        //esta forma de limpiar un formulario se usa cuando no tenemos validaciones en los campos
-        /*this.form1.patchValue({
-            id:'',
-            nombre:'',
-            apellido:'',
-            usuario:'',
-            password:'',
-            tipo:''
-        })*/
-        //limpiar campos con validaciones uso template driven forms 
-         this.form1.reset(); 
-      
-       
+         this.form1.reset();      
+    }
+    //metodo para enviar al router asignado
+    goLista(){
+        let link=['/usuarios/detalleUsuario'];
+        this.router.navigate(link);
     }
 }
