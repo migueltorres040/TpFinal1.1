@@ -23,8 +23,8 @@ export class UsuariosDetalleComponent implements OnInit{
         )
     }
     //implemento el metodo modificar
-    modificar(item:Usuarios){
-        let link=['/usuarios/detalleUsuario',item.id];
+    modificar(items:Usuarios){
+        let link=['/usuarios/detalleUsuario',items.id];
         this.router.navigate(link);
     }
 }

@@ -31,11 +31,11 @@ export class UsuariosAltaComponent implements OnInit{
                 if(this.usuarios.length>0){
                     this.form1.patchValue({
                         id:this.usuarios[0].id,
-                        nombred:this.usuarios[1].nombre,
-                        apellido:this.usuarios[2].apellido,
-                        usuario:this.usuarios[3].usuario,
-                        password:this.usuarios[4].password,
-                        tipo:this.usuarios[5].tipo
+                        nombre:this.usuarios[0].nombre,
+                        apellido:this.usuarios[0].apellido,
+                        usuario:this.usuarios[0].usuario,
+                        password:this.usuarios[0].password,
+                        tipo:this.usuarios[0].tipo
 
                     })
                 }

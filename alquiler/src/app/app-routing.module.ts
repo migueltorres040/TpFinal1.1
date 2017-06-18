@@ -18,7 +18,7 @@ const appRoutes: Routes=[
           
            {path: 'altaUsuario',component:UsuariosAltaComponent},
            {path: 'detalleUsuario',component:UsuariosDetalleComponent},
-           { path: 'detalleUsuario/:id', component: UsuariosDetalleComponent }
+           { path: 'detalleUsuario/:id', component: UsuariosAltaComponent }
       ]
     },
     { path: 'vehiculos',component:VehiculosComponent},
