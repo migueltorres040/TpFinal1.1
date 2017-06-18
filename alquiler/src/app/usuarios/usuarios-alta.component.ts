@@ -10,7 +10,7 @@ import{UsuariosValidator} from'./usuarios.validators';
     providers:[UsuariosService]
 })
 export class UsuariosAltaComponent implements OnInit{
-        titulo="Agregar un nuevo registro";
+        titulo="";
         form1:FormGroup;
         usuarios:Usuarios[]; // creo un atributo para enlazar con los controles del formulario  con ngModule
         esEdicion=false;//atributo para reconocer si utilizar el metodo guardar un registro nuevo o el guardar de modificar
@@ -19,10 +19,17 @@ export class UsuariosAltaComponent implements OnInit{
         private router:Router,
         private service:UsuariosService,
         private fb:FormBuilder
-    ){this.crearControles();}
+    ){}
     ngOnInit(){
         let id=this.route.snapshot.params['id'];
-        if(!id) return;
+        if(!id){
+            this.titulo="Agregar registro nuevo";
+            this.crearControlesNuevos();
+            return;
+        } 
+        this.titulo="Edicion de registro";
+        this.crearControlesEditar();
+
         //trae los datos al formulario
         this.service.getUsuario(id)
         .subscribe(
@@ -45,9 +52,25 @@ export class UsuariosAltaComponent implements OnInit{
         )
         console.log(id);
     }
-    crearControles(){
+    // esta funcion como tiene una validacion el el cual no se puede agregar un registro duplicado no funciona el 
+    //guardar del actualizar proque el boton esta inhabilitado
+    crearControlesNuevos(){
         this.form1=this.fb.group({
             id:['',Validators.required,UsuariosValidator.valorUnico(this.service)],//validaciones para los campos de los formularios
+             nombre:['',Validators.required],
+              apellido:['',Validators.required],
+              usuario:['',Validators.required],
+                password:['',Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(10)
+                ])],
+                 tipo:['',Validators.required]
+         })
+    }
+    //funcion para poder utilizar el metodo guardar de actualizar, para ello sacamos la validacion de valorUnico
+     crearControlesEditar(){
+        this.form1=this.fb.group({
+            id:['',Validators.required],
              nombre:['',Validators.required],
               apellido:['',Validators.required],
               usuario:['',Validators.required],
@@ -91,7 +114,7 @@ export class UsuariosAltaComponent implements OnInit{
     }
     //metodo para enviar al router asignado
     goLista(){
-        let link=['/usuarios/detalleUsuario'];
+        let link=['/usuarios/detalleUsuario/'];
         this.router.navigate(link);
     }
 }
