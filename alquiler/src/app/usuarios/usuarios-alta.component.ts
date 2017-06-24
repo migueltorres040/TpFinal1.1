@@ -114,7 +114,7 @@ export class UsuariosAltaComponent implements OnInit{
     }
     //metodo para enviar al router asignado
     goLista(){
-        let link=['/usuarios/detalleUsuario/'];
+        let link=['/usuarios/detalleUsuario'];
         this.router.navigate(link);
     }
 }
