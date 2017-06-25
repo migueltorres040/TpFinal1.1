@@ -1,15 +1,22 @@
-import{Component,OnInit} from '@angular/core';
+import{Component,OnInit,HostBinding} from '@angular/core';
 
 import { Router,ActivatedRoute} from '@angular/router';
 import { UsuariosService} from './usuarios.service';
 import {Usuarios} from './usuarios';
+import{slide} from './animations';//animacion en router 
 @Component({
     selector:'usuarios-detalle',
     templateUrl: './usuarios-detalle.component.html',
-    viewProviders:[UsuariosService]
+    viewProviders:[UsuariosService],
+    animations:[slide]//animacion router
 })
 export class UsuariosDetalleComponent implements OnInit{
     lista: Usuarios[];
+    //animacion router
+    @HostBinding('@routeAnimation') routeAnimation=true;
+    @HostBinding('style.display') display='block';
+    @HostBinding('style.position') position='absolute';
+
     constructor(
         private router:Router,
         private servicio:UsuariosService

@@ -1,19 +1,25 @@
-import{Component,OnInit} from '@angular/core';
+import{Component,OnInit,HostBinding} from '@angular/core';
 import{Router,ActivatedRoute,Params} from '@angular/router';
 import { UsuariosService} from './usuarios.service';
 import{Usuarios} from './usuarios';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms'; //agrego la clase validator para validad los campos en un fomeularios
 import{UsuariosValidator} from'./usuarios.validators';
+import{slide} from './animations'; //componente para animacion de router- ademas agrego HostBinding arriba en el core
 @Component({
     selector:'usuarios-alta',
     templateUrl: './usuarios-alta.component.html',
-    providers:[UsuariosService]
+    providers:[UsuariosService],
+    animations:[slide]
 })
 export class UsuariosAltaComponent implements OnInit{
         titulo="";
         form1:FormGroup;
         usuarios:Usuarios[]; // creo un atributo para enlazar con los controles del formulario  con ngModule
         esEdicion=false;//atributo para reconocer si utilizar el metodo guardar un registro nuevo o el guardar de modificar
+
+        @HostBinding('@routeAnimation') routeAnimation=true;
+        @HostBinding('style.display') display='block';
+        @HostBinding('style.position') position='absolute';
     constructor(
         private route:ActivatedRoute,
         private router:Router,
