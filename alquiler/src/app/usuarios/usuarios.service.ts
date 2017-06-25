@@ -43,6 +43,13 @@ addUsuarios(usuario:Usuarios){
                 .map(r=>r.json())
                 .catch(this.handleError);
  }
+ //metodo para eliminar registro
+ delUsuario(id:number){
+    let url=`${this.url}/${id}`;
+    return this.http.delete(url)
+                .map(r=>r.json())
+                .catch(this.handleError);
+ }
   
   private handleError(error:Response | any){
     let errMsg:string;

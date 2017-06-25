@@ -22,7 +22,10 @@
                      <td>{{item.password}}</td>
                     <td>{{item.tipo}}</td>
                     <td>
-                        <button class="btn btn-sm btn-primary"(click)="modificar(item)">Modificar</button>
+                        <button class="btn btn-sm btn-primary"(click)="modificar(item)">
+                            <i class="fa fa-pencil fa-fw"></i>Editar</button>
+                        <button class="btn btn-sm btn-danger"(click)="borrar(item)">
+                            <i class="fa fa-trash-o fa-fw"></i>Eliminar</button>
                     </td>
                 </tr>
             </tbody>

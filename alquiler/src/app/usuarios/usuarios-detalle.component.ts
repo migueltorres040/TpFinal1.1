@@ -27,4 +27,16 @@ export class UsuariosDetalleComponent implements OnInit{
         let link=['/usuarios/detalleUsuario',items.id];
         this.router.navigate(link);
     }
+    //metodo borrar
+    borrar(item:Usuarios){
+        if(!item) return;
+        this.servicio.delUsuario(item.id)
+                    .subscribe(
+                        rs=>console.log(rs),
+                        er=> console.log(er),
+                        ()=>{
+                            this.lista=this.lista.filter(h=>h !==item)
+                        }
+                    )
+    }
 }
