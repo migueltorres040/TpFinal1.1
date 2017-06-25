@@ -2,7 +2,15 @@
     Pantalla de usuarios
 </div>
 <nav>
-    <button class="btn btn-primary" routerLink="detalleUsuario">Lista de usuarios</button>
-    <button class="btn btn-primary" routerLink="altaUsuario"> Alta de usuarios</button>
+    <button class="btn btn-primary" routerLink="detalleUsuario"
+      [@animacion]="estado1" 
+      (mouseenter)="estado1='active'" 
+      (mouseleave)="estado1='inactive'"
+    >Lista de usuarios</button>
+    <button class="btn btn-primary" routerLink="altaUsuario"
+     [@animacion]="estado2" 
+      (mouseenter)="estado2='active'" 
+      (mouseleave)="estado2='inactive'"
+    > Alta de usuarios</button>
 </nav>
 <router-outlet></router-outlet>
