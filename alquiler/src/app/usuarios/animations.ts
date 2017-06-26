@@ -8,7 +8,7 @@ trigger('routeAnimation',[
     })),
     transition(':enter',[
         style({
-            opacity:0,
+            opacity:0, 
             transform:'translateX(-100%)'
         }),
         animate('0.3s ease-in')

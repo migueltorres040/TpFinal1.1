@@ -8,7 +8,7 @@ import{slide} from './animations'; //componente para animacion de router- ademas
 @Component({
     selector:'usuarios-alta',
     templateUrl: './usuarios-alta.component.html',
-    providers:[UsuariosService],
+    //providers:[UsuariosService],
     animations:[slide]
 })
 export class UsuariosAltaComponent implements OnInit{

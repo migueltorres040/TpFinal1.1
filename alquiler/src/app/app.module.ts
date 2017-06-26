@@ -10,9 +10,11 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { DetalleComponent } from './detalle/detalle.component';
-import { UsuariosService} from './usuarios/usuarios.service';
-import{UsuariosAltaComponent} from './usuarios/usuarios-alta.component';
-import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
+//import { UsuariosService} from './usuarios/usuarios.service';
+//import{UsuariosAltaComponent} from './usuarios/usuarios-alta.component';
+//import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
+import{UsuarioModule}from './usuarios/usuario.module'; //se elimina los anteriores porque estan agrupado en este modulo
+
 
 
 @NgModule({
@@ -20,20 +22,21 @@ import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
     AppComponent,
     HomeComponent,
     ClientesComponent,
-    UsuariosComponent,
+    //UsuariosComponent,
     VehiculosComponent,
-    DetalleComponent,
-    UsuariosAltaComponent,
-    UsuariosDetalleComponent
+    DetalleComponent
+    //UsuariosAltaComponent,
+   // UsuariosDetalleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UsuarioModule
   ],
-  providers: [UsuariosService],// aca se importan los servicios
+  providers: [],// aca se importan los servicios
   bootstrap: [AppComponent]
 })
 export class AppModule { }

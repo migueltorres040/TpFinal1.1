@@ -7,7 +7,7 @@ import{slide} from './animations';//animacion en router
 @Component({
     selector:'usuarios-detalle',
     templateUrl: './usuarios-detalle.component.html',
-    viewProviders:[UsuariosService],
+    //viewProviders:[UsuariosService] se elimina porque se creo un moduloUsuario que agrupa a todos
     animations:[slide]//animacion router
 })
 export class UsuariosDetalleComponent implements OnInit{

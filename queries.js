@@ -1,4 +1,5 @@
 var conexion=require('./connections');
+var jwt=require('jsonwebtoken');
 function MetodosDB(){
     // traer todo
     this.seleccionar=function(respuesta){
@@ -64,6 +65,29 @@ function MetodosDB(){
                     respuesta.send({estado:'ok'});
                 }
             })
+        })
+    }
+    //metodo login
+    this.login=function(datos,respuesta){
+        conexion.obtener(function(er,cn){
+            cn.query('select * from usuarios where usuario=? and password=?',[datos.usuario,datos.password],function(error,resultado){
+            cn.release();
+            if(error){
+                respuesta.send('error');
+            }else{
+                if(resultado.length==0){
+                    console.log('no se encuentra el usuario');
+                    respuesta.send('nofound');
+                }else{
+                    var token=jwt.sign({
+                        usuario:datos.usuario,
+                        role:datos.tipo
+                    },'secreto',{expiresIn:'120s'});
+                    respuesta.send(token);
+                }
+                
+            }
+        })
         })
     }
 }//fin funcion metodoBD

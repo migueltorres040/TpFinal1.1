@@ -21,7 +21,10 @@ function http(){
         app.delete('/usuarios/:id/',function(solicitud,respuesta){
             db.borrar(solicitud.params.id,respuesta);
         })
-
+        // login 
+        app.post('/auth/login/',function(solicitud,respuesta){
+            db.login(solicitud.body,respuesta);
+        })
         
     }
 }
