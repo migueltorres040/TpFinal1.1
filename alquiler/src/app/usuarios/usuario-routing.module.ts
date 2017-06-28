@@ -5,9 +5,11 @@ import{RouterModule,Routes} from '@angular/router';
 import{UsuariosComponent} from './usuarios.component';
 import{UsuariosAltaComponent} from './usuarios-alta.component';
 import{UsuariosDetalleComponent} from './usuarios-detalle.component';
+import{AuthGuard} from '../login/auth.guard';
 
 const usuarioRoutes: Routes=[
     { path: 'usuarios',component:UsuariosComponent,
+        canActivate:[AuthGuard],
       children:[
           {path: '',redirectTo:'detalleUsuario',pathMatch:'full'},
           

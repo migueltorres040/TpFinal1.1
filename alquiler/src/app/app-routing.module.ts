@@ -6,15 +6,17 @@ import{ClientesComponent} from './clientes/clientes.component';
 import{DetalleComponent} from './detalle/detalle.component';
 //import{UsuariosComponent} from './usuarios/usuarios.component';
 import{VehiculosComponent} from './vehiculos/vehiculos.component';
+import{LoginComponent} from './login/login.component';
 //import{UsuariosAltaComponent} from './usuarios/usuarios-alta.component';
 //import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
-import{UsuarioModule}from './usuarios/usuario.module';
+//import{UsuarioModule}from './usuarios/usuario.module';
 const appRoutes: Routes=[
     { path: 'home',component:HomeComponent},
     { path: 'clientes',component:ClientesComponent},
-    { path: 'usuarios',loadChildren:()=>UsuarioModule},
+   // { path: 'usuarios',loadChildren:()=>UsuarioModule},
     { path: 'vehiculos',component:VehiculosComponent},
-    { path: 'detalle',component:DetalleComponent }
+    { path: 'detalle',component:DetalleComponent },
+    { path: 'login',component:LoginComponent }
     
 ];
 

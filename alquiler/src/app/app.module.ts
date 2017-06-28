@@ -10,6 +10,8 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import{LoginComponent} from './login/login.component';
+import{AuthService} from './login/auth.service';
 //import { UsuariosService} from './usuarios/usuarios.service';
 //import{UsuariosAltaComponent} from './usuarios/usuarios-alta.component';
 //import{UsuariosDetalleComponent} from './usuarios/usuarios-detalle.component';
@@ -24,7 +26,8 @@ import{UsuarioModule}from './usuarios/usuario.module'; //se elimina los anterior
     ClientesComponent,
     //UsuariosComponent,
     VehiculosComponent,
-    DetalleComponent
+    DetalleComponent,
+    LoginComponent
     //UsuariosAltaComponent,
    // UsuariosDetalleComponent
   ],
@@ -36,7 +39,7 @@ import{UsuarioModule}from './usuarios/usuario.module'; //se elimina los anterior
     AppRoutingModule,
     UsuarioModule
   ],
-  providers: [],// aca se importan los servicios
+  providers: [AuthService],// aca se importan los servicios
   bootstrap: [AppComponent]
 })
 export class AppModule { }

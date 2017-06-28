@@ -8,6 +8,7 @@ import { UsuariosComponent } from './usuarios.component';
 import{UsuariosAltaComponent} from './usuarios-alta.component';
 import{UsuariosDetalleComponent} from './usuarios-detalle.component';
 import { UsuariosService} from './usuarios.service';
+import{AuthGuard} from '../login/auth.guard';
 import{UsuarioRoutingModule} from './usuario-routing.module';
 
 @NgModule({
@@ -28,6 +29,6 @@ import{UsuarioRoutingModule} from './usuario-routing.module';
         UsuariosDetalleComponent
        
     ],
-    providers:[UsuariosService]
+    providers:[UsuariosService,AuthGuard]
 })
 export class UsuarioModule{}

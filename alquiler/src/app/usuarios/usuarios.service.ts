@@ -9,13 +9,21 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 @Injectable()
 export class UsuariosService {
-  private headers=new Headers({'Content-Type':'application/json'});//&&&
+  //private headers=new Headers({'Content-Type':'application/json'});//&&&
+  private options;
   private url='http://localhost:8000/usuarios';
 
-  constructor(private http:Http) { }
+  constructor(private http:Http) { 
+    let token=localStorage.getItem('token');
+    let headers=new Headers({
+        'Content-Type':'application/json',
+        'Authorization':'Bearer '+token
+    });
+    this.options=new RequestOptions({headers:headers})
+  }
   getUsuarios():Observable<Usuarios[]>{
     let url= `${this.url}`;
-    return this.http.get(url)
+    return this.http.get(url,this.options)
                 
                 .map(r => r.json())
                 .catch(this.handleError);
@@ -23,7 +31,7 @@ export class UsuariosService {
   //funcion para validacion asincrona --busca en la base si existe el registro
   getUsuario(id:number):Observable<Usuarios[]>{
     let url= `${this.url}/${id}`;
-    return this.http.get(url)
+    return this.http.get(url,this.options)
                 .first()
                 .map(r => r.json())
                 .catch(this.handleError);
@@ -31,7 +39,7 @@ export class UsuariosService {
 addUsuarios(usuario:Usuarios){
     let url= `${this.url}`;
     let iJson=JSON.stringify(usuario);
-    return this.http.post(url,iJson,{headers:this.headers})//este header es el que se creo al comienzo &&&
+    return this.http.post(url,iJson,this.options)//este header es el que se creo al comienzo &&&
                 .map(r => r.json())
                 .catch(this.handleError);
   }
@@ -39,14 +47,14 @@ addUsuarios(usuario:Usuarios){
  putUsuario(usuario:Usuarios){
    let url=`${this.url}`;
    let iJson=JSON.stringify(usuario);
-   return this.http.put(url,iJson,{headers:this.headers})
+   return this.http.put(url,iJson,this.options)
                 .map(r=>r.json())
                 .catch(this.handleError);
  }
  //metodo para eliminar registro
  delUsuario(id:number){
     let url=`${this.url}/${id}`;
-    return this.http.delete(url)
+    return this.http.delete(url,this.options)
                 .map(r=>r.json())
                 .catch(this.handleError);
  }
